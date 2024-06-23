@@ -2,4 +2,4 @@
 
 ## Accessing the Website
 
-You can access the changelog website [here](#).
+You can access the changelog website [here](https://jalenzzz.github.io/restful_logs_test/).

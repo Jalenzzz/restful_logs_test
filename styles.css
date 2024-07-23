@@ -14,20 +14,7 @@
     opacity: 1;
   }
 }
-@keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-.dev-message {
-  font-size: x-large;
-}
+
 .sidebar-image {
   position: fixed;
   top: 50%;
@@ -51,9 +38,16 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+}
+/* background colour for selected elements */
+::selection {
+  background-color: #ff6600;
+  color: #ffffff;
+}
+/* background colour for selected elements on mozilla based browsers */
+::-moz-selection {
+  background-color: #ff6600;
+  color: #ffffff;
 }
 .container {
   max-width: 800px;
@@ -159,11 +153,12 @@ h3 p {
   .container {
     padding: 10px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2), 0 -10px 10px rgba(0, 0, 0, 0.2);
+    font-size: 0.85em;
   }
   header,
   section,
   footer {
-    margin-bottom: 10px;
+    margin-bottom: 4px;
   }
   header {
     display: flex;
@@ -182,9 +177,9 @@ h3 p {
     margin-bottom: 10px;
     margin-right: 10px;
   }
-  #content {
+  /* #content {
     flex: 1;
-  }
+  } */
   #pagination {
     flex-wrap: wrap;
     justify-content: center;
@@ -229,13 +224,26 @@ h3 p {
   #content {
     overflow-y: auto;
   }
+  #logo {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    right: 90px;
+    top: 20px;
+  }
   .sidebar-image {
     position: relative;
     top: auto;
     right: auto;
     transform: none;
-    width: 60%;
-    margin: 10px auto;
+    width: 50%; /* adjust the width to your liking */
+    height: auto;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex; /* add display flex to the sidebar image container */
+    flex-direction: column; /* set flex direction to column */
+    z-index: 1; /* add z-index to ensure the sidebar image appears above the content */
   }
 }
 

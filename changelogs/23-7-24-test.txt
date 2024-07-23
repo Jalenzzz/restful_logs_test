@@ -79,7 +79,7 @@
 - MOBILE IMPROVEMENTS! Check us out on your phone or tablet! The game looks better, and runs better!
 - More polishes and fixes!
 
-# June 2nd 2017 / JEWELRY STORE UPDATE
+# June 4th 2017 / JEWELRY STORE UPDATE
 - NEW robbery: Jewelry store!
 - Ultra fast Bugatti!
 - The Spinner rims are no longer obtainable.
@@ -462,7 +462,7 @@
 - Shotguns now deal damage based on number of bullets hitting target
 - 30% Longer minigun fire time
  
-# September 5th 2018
+# September 5th 2018 / BALANCE UPDATE
 
 - Menu should load instantly now for slower connections.
 - Bullets don't bounce off water.
@@ -470,7 +470,7 @@
 - Shotgun balancing.
 - Equipping a new item no longer reloads Rockets.
 
-#  September 30th 2018 / FALL UPDATE!
+#  September 30th 2018 / FALL UPDATE
 
 - The map is now fall-themed. Limited time!
 - Fixed some arm bugs for the ATV and Posh.
@@ -2877,3 +2877,11 @@ Two new vehicles were added:
 - - Robbery: Museum Decorative, Tomb entry, Tomb arrow room, Tomb CartA, Tomb CartB, Tomb treasure room, Tomb exits, Donut interior, Gas interior, Mansion entry, CEO rooms, Casino interior and Casino Vault, Oil Rig decoration, Powerplant interior, Train tracks, tunnels, and bridges.
 - - Other: Gun Shop 1 and Gun Shop 2, Trade ship, NPCs, Pirate Cave, Port objects, road tunnels and bridges, 1M interior, 2M interior, and the Volcano Base.
 - FYI: StreamingEnabled improves device memory, helpful for low RAM devices. It does not affect FPS. We hope to chase FPS next! Thank you!
+
+# July 23rd 2024 / TOY THEMED EVENT
+## Jazwares Toy themed event
+
+- NEW: Mini-Event (Check the prison to get started)
+- Limited Time skins
+- New SWAT Van
+- Brickset Tires

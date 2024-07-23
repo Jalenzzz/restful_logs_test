@@ -42,13 +42,15 @@ document.addEventListener("DOMContentLoaded", () => {
       // Process the text data into changelog items
       const lines = data.split("\n");
       let currentItem = "";
+      let currentDate = "";
 
       lines.forEach((line) => {
         if (line.startsWith("# ")) {
           if (currentItem) {
-            changelogItems.push(currentItem);
+            changelogItems.push({ content: currentItem, date: currentDate });
             currentItem = "";
           }
+          currentDate = line.substring(2);
           currentItem = `<h1>${line.substring(2)}</h1>`;
         } else if (line.startsWith("- - ")) {
           currentItem += `<p><span class="bullet">•</span> <span class="sub-bullet">•</span> ${line.substring(
@@ -70,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (currentItem) {
-        changelogItems.push(currentItem);
+        changelogItems.push({ content: currentItem, date: currentDate });
       }
 
       changelogItems = changelogItems.reverse();
@@ -79,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Render initial content and pagination
       renderChangelogs();
       renderPagination();
+      adjustSelectWidth();
     })
     .catch((error) => {
       console.error("Error fetching the changelog:", error);
@@ -94,56 +97,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let contentHtml = "";
     currentItems.forEach((item) => {
-      contentHtml += item;
+      contentHtml += item.content;
     });
 
     contentElement.innerHTML = contentHtml;
   }
 
-  // Function to render pagination buttons
   function renderPagination() {
     let paginationHtml = "";
 
-    // Previous page button
-    if (currentPage > 1) {
-      paginationHtml += `<button onclick="goToPage(${
-        currentPage - 1
-      })">Previous</button>`;
+    paginationHtml += `<select id="pageSelect" class="pagination-select" onchange="goToPage(this.value)">`;
+    for (let i = 1; i <= totalPages; i++) {
+      const date = changelogItems[i - 1].date;
+      paginationHtml += `<option value="${i}" ${
+        i === currentPage ? "selected" : ""
+      }>${i} - ${date}</option>`;
     }
-
-    // Calculate visible page buttons range
-    const maxPages = 5;
-    const startPage = Math.max(1, currentPage - Math.floor(maxPages / 2));
-    const endPage = Math.min(totalPages, startPage + maxPages - 1);
-
-    // First page button
-    if (startPage > 1) {
-      paginationHtml += `<button onclick="goToPage(1)">First</button>`;
-    }
-
-    // Page number buttons
-    for (let i = startPage; i <= endPage; i++) {
-      paginationHtml += `<button onclick="goToPage(${i})" ${
-        i === currentPage ? 'class="active"' : ""
-      }>${i}</button>`;
-    }
-
-    // Next and Last page buttons
-    if (currentPage < totalPages) {
-      paginationHtml += `<button onclick="goToPage(${
-        currentPage + 1
-      })">Next</button>`;
-      paginationHtml += `<button onclick="goToPage(${totalPages})">Last</button>`;
-    }
+    paginationHtml += `</select>`;
 
     paginationElement.innerHTML = paginationHtml;
   }
 
-  // Function to navigate to a specific page
+  function adjustSelectWidth() {
+    const selectElement = document.getElementById("pageSelect");
+    const selectedOption = selectElement.options[selectElement.selectedIndex];
+    const tempSpan = document.createElement("span");
+    tempSpan.style.visibility = "hidden";
+    tempSpan.style.position = "absolute";
+    tempSpan.style.whiteSpace = "nowrap";
+    tempSpan.innerHTML = selectedOption.text;
+    document.body.appendChild(tempSpan);
+    const optionWidth = tempSpan.offsetWidth;
+    document.body.removeChild(tempSpan);
+
+    selectElement.style.width = `${optionWidth + 20}px`;
+  }
+
   window.goToPage = (pageNumber) => {
-    currentPage = pageNumber;
+    currentPage = Number(pageNumber);
     renderChangelogs();
     renderPagination();
-    updateSidebarImage(pageNumber);
+    adjustSelectWidth();
+    updateSidebarImage(currentPage);
   };
 });
